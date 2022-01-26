@@ -7,7 +7,9 @@
  * trimProperties({ name: '  jane  ' }) // returns a new object { name: 'jane' }
  */
 function trimProperties(obj) {
-  // ✨ implement
+  const newObj = {...obj}
+  Object.keys(newObj).forEach(key => newObj[key] = typeof newObj[key] === 'string' ? newObj[key].trim() : newObj[key])
+  return newObj
 }
 
 /**
@@ -19,7 +21,8 @@ function trimProperties(obj) {
  * trimPropertiesMutation({ name: '  jane  ' }) // returns the object mutated in place { name: 'jane' }
  */
 function trimPropertiesMutation(obj) {
-  // ✨ implement
+  Object.keys(obj).forEach(key => obj[key] = typeof obj[key] === 'string' ? obj[key].trim() : obj[key])
+  return obj
 }
 
 /**
@@ -31,7 +34,13 @@ function trimPropertiesMutation(obj) {
  * findLargestInteger([{ integer: 1 }, { integer: 3 }, { integer: 2 }]) // returns 3
  */
 function findLargestInteger(integers) {
-  // ✨ implement
+  let int = 0
+  integers.forEach(obj => {
+    if(obj.integer > int) {
+      int = obj.integer
+    }
+  })
+  return int
 }
 
 class Counter {
@@ -40,7 +49,8 @@ class Counter {
    * @param {number} initialNumber - the initial state of the count
    */
   constructor(initialNumber) {
-    // ✨ initialize whatever properties are needed
+    this.initialNumber = initialNumber
+    this.callCount = 0
   }
 
   /**
@@ -56,7 +66,11 @@ class Counter {
    * counter.countDown() // returns 0
    */
   countDown() {
-    // ✨ implement
+    if(this.initialNumber === 0) {return 0}
+    if(this.callCount === 0){this.callCount++; return this.initialNumber}
+    this.initialNumber--
+    this.callCount++
+    return this.initialNumber
   }
 }
 
@@ -65,7 +79,8 @@ class Seasons {
    * [Exercise 5A] Seasons creates a seasons object
    */
   constructor() {
-    // ✨ initialize whatever properties are needed
+    this.seasons = ['spring', 'summer', 'fall', 'winter']
+    this.currentSeason = 0
   }
 
   /**
@@ -81,7 +96,10 @@ class Seasons {
    * seasons.next() // returns "summer"
    */
   next() {
-    // ✨ implement
+    if(this.currentSeason = 3){this.currentSeason = 0; return this.seasons[this.currentSeason]}
+    this.currentSeason++
+    return this.seasons[this.currentSeason]
+    
   }
 }
 

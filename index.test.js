@@ -8,16 +8,34 @@ describe('[Exercise 1] trimProperties', () => {
     const actual = utils.trimProperties(input)
     expect(actual).toEqual(expected)
   })
-  // test('[2] returns a copy, leaving the original object intact', () => {})
+  test('[2] returns a copy, leaving the original object intact', () => {
+    const input = { foo: '  foo ', bar: 'bar ', baz: ' baz' }
+    const actual = utils.trimProperties(input)
+    expect(actual).not.toEqual(input)
+  })
 })
 
 describe('[Exercise 2] trimPropertiesMutation', () => {
-  // test('[3] returns an object with the properties trimmed', () => {})
-  // test('[4] the object returned is the exact same one we passed in', () => {})
+  test('[3] returns an object with the properties trimmed', () => {
+    const input = { foo: '  foo ', bar: 'bar ', baz: ' baz' }
+    const expected = { foo: 'foo', bar: 'bar', baz: 'baz' }
+    const actual = utils.trimPropertiesMutation(input)
+    expect(actual).toEqual(expected)
+  })
+  test('[4] the object returned is the exact same one we passed in', () => {
+    const input = { foo: '  foo ', bar: 'bar ', baz: ' baz' }
+    const actual = utils.trimPropertiesMutation(input)
+    expect(input).toStrictEqual(actual)
+  })
 })
 
 describe('[Exercise 3] findLargestInteger', () => {
-  // test('[5] returns the largest number in an array of objects { integer: 2 }', () => {})
+  test('[5] returns the largest number in an array of objects { integer: 2 }', () => {
+    const input = [{integer: 1}, {integer: 18}, {integer: 7}, {integer: 4}]
+    const expected = 18
+    const actual = utils.findLargestInteger(input)
+    expect(actual).toEqual(expected)
+  })
 })
 
 describe('[Exercise 4] Counter', () => {
@@ -25,9 +43,23 @@ describe('[Exercise 4] Counter', () => {
   beforeEach(() => {
     counter = new utils.Counter(3) // each test must start with a fresh couter
   })
-  // test('[6] the FIRST CALL of counter.countDown returns the initial count', () => {})
-  // test('[7] the SECOND CALL of counter.countDown returns the initial count minus one', () => {})
-  // test('[8] the count eventually reaches zero but does not go below zero', () => {})
+  test('[6] the FIRST CALL of counter.countDown returns the initial count', () => {
+    const expected = 3
+    const actual = counter.countDown()
+    expect(actual).toEqual(expected)
+  })
+  test('[7] the SECOND CALL of counter.countDown returns the initial count minus one', () => {
+    const expected = 2
+    let actual
+    for(let i = 0; i < 2; i++){ actual = counter.countDown()}
+    expect(actual).toEqual(expected)
+  })
+  test('[8] the count eventually reaches zero but does not go below zero', () => {
+    const expected = 0
+    let actual
+    for(let i = 0; i < 5; i++){ actual = counter.countDown()}
+    expect(actual).toEqual(expected)
+  })
 })
 
 describe('[Exercise 5] Seasons', () => {
