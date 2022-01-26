@@ -67,12 +67,41 @@ describe('[Exercise 5] Seasons', () => {
   beforeEach(() => {
     seasons = new utils.Seasons() // each test must start with fresh seasons
   })
-  // test('[9] the FIRST call of seasons.next returns "summer"', () => {})
-  // test('[10] the SECOND call of seasons.next returns "fall"', () => {})
-  // test('[11] the THIRD call of seasons.next returns "winter"', () => {})
-  // test('[12] the FOURTH call of seasons.next returns "spring"', () => {})
-  // test('[13] the FIFTH call of seasons.next returns again "summer"', () => {})
-  // test('[14] the 40th call of seasons.next returns "spring"', () => {})
+  test('[9] the FIRST call of seasons.next returns "summer"', () => {
+    const expected = 'summer'
+    const actual = seasons.next()
+    expect(actual).toEqual(expected)
+  })
+  test('[10] the SECOND call of seasons.next returns "fall"', () => {
+    const expected = 'fall'
+    let actual
+    for(let i = 0; i < 2; i++){ actual = seasons.next()}
+    expect(actual).toEqual(expected)
+  })
+  test('[11] the THIRD call of seasons.next returns "winter"', () => {
+    const expected = 'winter'
+    let actual
+    for(let i = 0; i < 3; i++){ actual = seasons.next()}
+    expect(actual).toEqual(expected)
+  })
+  test('[12] the FOURTH call of seasons.next returns "spring"', () => {
+    const expected = 'spring'
+    let actual
+    for(let i = 0; i < 4; i++){ actual = seasons.next()}
+    expect(actual).toEqual(expected)
+  })
+  test('[13] the FIFTH call of seasons.next returns again "summer"', () => {
+    const expected = 'summer'
+    let actual
+    for(let i = 0; i < 5; i++){ actual = seasons.next()}
+    expect(actual).toEqual(expected)
+  })
+  test('[14] the 40th call of seasons.next returns "spring"', () => {
+    const expected = 'winter'
+    let actual
+    for(let i = 0; i < 39; i++){ actual = seasons.next()}
+    expect(actual).toEqual(expected)
+  })
 })
 
 describe('[Exercise 6] Car', () => {
@@ -80,10 +109,30 @@ describe('[Exercise 6] Car', () => {
   beforeEach(() => {
     focus = new utils.Car('focus', 20, 30) // each test must start with a fresh car
   })
-  // test('[15] driving the car returns the updated odometer', () => {})
-  // test('[16] driving the car uses gas', () => {})
-  // test('[17] refueling allows to keep driving', () => {})
-  // test('[18] adding fuel to a full tank has no effect', () => {})
+  test('[15] driving the car returns the updated odometer', () => {
+    const expected = 10
+    const actual = focus.drive(10)
+    expect(actual).toEqual(expected)
+  })
+  test('[16] driving the car uses gas', () => {
+    const expected = 16.67
+    focus.drive(100)
+    const actual = focus.checkFuel()
+    expect(actual).toEqual(expected)
+  })
+  test('[17] refueling allows to keep driving', () => {
+    focus.drive(600)
+    focus.refuel(30)
+    const expected = 900
+    const actual = focus.drive(300)
+    expect(actual).toEqual(expected)
+  })
+  test('[18] adding fuel to a full tank has no effect', () => {
+    focus.refuel(10)
+    const expected = 20
+    const actual = focus.checkFuel()
+    expect(actual).toEqual(expected)
+  })
 })
 
 describe('[Exercise 7] isEvenNumberAsync', () => {
